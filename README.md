@@ -105,6 +105,7 @@ Second byte contains humidity in percent.
 Registers 08, 09 and 0A need to be combined for full date/time.
 
 Example:
+
     Data: 08 0B D5 09 E5 EB 0A 00 3B
     0BD5 = 000010111 1010 101
                   23   10   5
@@ -133,12 +134,12 @@ Example:
 For unknown reasons, we need to send a null setpoint first for the thermostat to react
 
 Set temperature setpoint to 20.0°C:
+
     11 0B DE 72 3B 00 00 3B 02 A8 F8 28
 
 ### Set Time
 The first thermostat paired to the controller will act as the time master. Time can only be manually adjusted at this first thermostat.
 Changing the time can only be done by faking a packet coming from this thermostat.
 
-Set time:
     11 0B DE 13 08 0B D6 09 EB 14 0A 00 00 27 52
     11 0B DE 13 08 0B D0 09 F0 11 0A 00 00 25 9C
