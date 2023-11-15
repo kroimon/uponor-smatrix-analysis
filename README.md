@@ -143,3 +143,10 @@ Changing the time can only be done by faking a packet coming from this thermosta
 
     11 0B DE 13 08 0B D6 09 EB 14 0A 00 00 27 52
     11 0B DE 13 08 0B D0 09 F0 11 0A 00 00 25 9C
+
+
+# Resources
+
+* https://www.eevblog.com/forum/projects/figuring-out-an-rs485-protocol/
+* https://github.com/ddsuc3m/uponor-floorheating
+* https://github.com/jaxer/uponor
