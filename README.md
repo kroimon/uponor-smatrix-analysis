@@ -44,15 +44,21 @@ Each 3 byte section starts with a register number (or command byte) followed by 
 
 A modbus-like CRC16 checksum is added to the end of each packet.
 
-All data field in the package are big-endian except for the little-endian checksum.
+All data fields in the package are big-endian except for the little-endian checksum.
 
 
 ## Communication sequence
-The controller starts a new communication cycle exactly every 10 seconds.
+During each communication cycle, the controller queries all thermostats in sequence.
 
 At the beginning of each communication cycle, a request packet (payload FF) is sent by the controller to the first known thermostat.
 The thermostat responds with a set of values, after which the controller sends an update packet containing additional values the thermostat did not provide by itself (e.g. current date and time).
-After these three packets (request, response, update), the controller sends a request to the next known thermostat until all known thermostats have been queried.
+These three packets (request, response, update) together represent the full current state of the thermostat.
+
+Around 200 ms after sending the previous request packet, the controller sends a request to the next known thermostat.
+The communication cycle is complete when all known thermostats have been queried.
+
+My controller starts a new communication cycle exactly every 10 seconds.
+According to https://github.com/esphome/esphome/pull/7326, other controllers cycle through thermostats continuously (one thermostat every 200 ms) instead of pausing between cycles.
 
 
 ## Registers / commands
