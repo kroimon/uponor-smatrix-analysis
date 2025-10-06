@@ -35,11 +35,12 @@ RS485, 19200, 8N1
 
 
 ## Packet layout
-The first four bytes contain address information.
-Bytes 1 to 2 seem to contain a system ID (source address) and bytes 3 to 4 contain the thermostat ID (target address).
-It is unclear if the system ID encodes information like the controller type.
+The first four bytes contain address information. Each thermostat has a unique address both used in packets originating from and targeting the thermostat.\
+Originally, it was suspected that bytes 1 to 2 contain a system ID (source address) and bytes 3 to 4 contain the thermostat ID (target address).
+However, according to https://github.com/kroimon/uponor-smatrix-analysis/issues/1, there are installations with thermostats that do not all share the same 16 bit prefix.\
+It is unclear if the addresses encode additional information like the controller or thermostat type.
 
-This is followed by a variable number of payload bytes. The length of the payload is always divisable by 3 (except for the data request).
+The address is followed by a variable number of payload bytes. The length of the payload is always divisable by 3 (except for the data request).
 Each 3 byte section starts with a register number (or command byte) followed by two bytes of data value.
 
 A modbus-like CRC16 checksum is added to the end of each packet.
