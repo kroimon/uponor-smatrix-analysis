@@ -152,6 +152,13 @@ Changing the time can only be done by faking a packet coming from this thermosta
     11 0B DE 13 08 0B D0 09 F0 11 0A 00 00 25 9C
 
 
+# Reference implementation
+
+This analysis lead to the implementation of the `uponor_smatrix` component for ESPHome:
+* Documentation: https://esphome.io/components/uponor_smatrix/
+* Source: https://github.com/esphome/esphome/tree/dev/esphome/components/uponor_smatrix
+
+
 # Resources
 
 * https://www.eevblog.com/forum/projects/figuring-out-an-rs485-protocol/
